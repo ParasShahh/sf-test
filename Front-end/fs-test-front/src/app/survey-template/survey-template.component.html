@@ -1,0 +1,68 @@
+<div class="row col-12" style="max-width:350px;">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="name">Form name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+      <div *ngIf="f.submitted && name.invalid">
+        <div *ngIf="name.errors.required">Name is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Form type</label>
+      <select class="form-control" name="type" [(ngModel)]="form.type" #type="ngModel" required>
+        <option>Input</option>
+        <option>Checkbox</option>
+        <option>Radio</option>
+        <option>Dropdown</option>
+      </select>
+      <div *ngIf="f.submitted && type.invalid">
+        <div *ngIf="type.errors.required">Type is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Form label</label>
+      <input type="text" class="form-control" name="label" [(ngModel)]="form.label" #label="ngModel" required />
+      <div *ngIf="f.submitted && label.invalid">
+        <div *ngIf="label.errors.required">label is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Form options</label>
+      <input type="text" [disabled]="!(form.type == 'Dropdown' || form.type == 'Radio')" class="form-control"
+        name="options" [(ngModel)]="form.options" #option="ngModel" />
+
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary">Add Field</button>
+      <div *ngIf="f.submitted " class="alert alert-warning">
+        Signup failed!<br />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="col-12">
+  <div *ngFor="let item of surveyTemplateArray; let i= index">
+    <div class="form-group" *ngIf="item.type == 'Input'">
+      <label for="name">{{item.label}}</label>
+      <input type="text" class="form-control" [(ngModel)]="item.value" />
+    </div>
+    <div class="form-group" *ngIf="item.type == 'Checkbox'">
+      <label for="name">{{item.label}}</label>
+      <input type="checkbox" [(ngModel)]="item.value" />
+    </div>
+    <div class="form-group" *ngIf="item.type == 'Dropdown'">
+      <label for="name">{{item.label}}</label>
+      <select class="form-control" [(ngModel)]="item.value">
+        <option *ngFor="let o of item.options">{{o}}</option>
+      </select>
+    </div>
+    <div class="form-group" *ngIf="item.type == 'Radio'">
+      <div *ngFor="let enum of item.options">
+        <label for="enum_answer_{{enum}}">
+          <input id="enum_answer_{{enum}}" [value]='enum' type="radio" name="enums" [(ngModel)]="item.value">
+          {{enum}}
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
