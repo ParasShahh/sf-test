@@ -1,6 +1,6 @@
 # sf-test
 
-# FsTest Front-end
+# SFTest Front-end
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
 
@@ -14,7 +14,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-# FsTest Backend-end
+# SFTest Backend-end
 
 - Prerequisite mysql server should be up and running.
 - Navigate to Folder /Backend
