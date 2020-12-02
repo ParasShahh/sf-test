@@ -1,0 +1,34 @@
+<div class="col-12">
+  <div *ngFor="let item of surveyTemplateArray; let i= index">
+    <div class="form-group" *ngIf="item.type == 'Input'">
+      <label for="name">{{item.label}}</label>
+      <input type="text" class="form-control" [(ngModel)]="item.value" />
+    </div>
+    <div class="form-group" *ngIf="item.type == 'Checkbox'">
+      <label for="name">{{item.label}}</label>
+      <input type="checkbox" [(ngModel)]="item.value" />
+    </div>
+    <div class="form-group" *ngIf="item.type == 'Dropdown'">
+      <label for="name">{{item.label}}</label>
+      <select class="form-control" [(ngModel)]="item.value">
+        <option *ngFor="let o of item.options">{{o}}</option>
+      </select>
+    </div>
+    <div class="form-group" *ngIf="item.type == 'Radio'">
+      <div *ngFor="let enum of item.options">
+        <label for="enum_answer_{{enum}}">
+          <input id="enum_answer_{{enum}}" [value]='enum' type="radio" name="enums" [(ngModel)]="item.value">
+          {{enum}}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="surveyTemplateArray.length>0" class="form-grop">
+    <!-- <button (click)="submitSurvey()" class="btn btn-primary">Save Survey Form</button> -->
+  </div>
+</div>
+<div *ngIf="surveyTemplateArray.length==0">
+  <div class="alert alert-danger">
+    Try with different form ID altering same in URL.
+  </div>
+</div>

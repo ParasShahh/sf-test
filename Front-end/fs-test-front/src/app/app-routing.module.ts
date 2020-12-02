@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { SurveyTemplateComponent } from './survey-template/survey-template.component';
+import { SurveyFormComponent } from './survey-form/survey-form.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'template',
     component: SurveyTemplateComponent
+  },
+  {
+    path: 'surveyform/:id',
+    component: SurveyFormComponent
   },
   {
     path: 'auth/login',

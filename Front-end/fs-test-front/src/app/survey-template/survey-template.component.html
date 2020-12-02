@@ -1,6 +1,14 @@
 <div class="row col-12" style="max-width:350px;">
   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
     <div class="form-group">
+      <label for="surveyName">Survey name</label>
+      <input type="text" class="form-control" name="surveyName" [(ngModel)]="surveyNameText" #surveyName="ngModel"
+        required [ngModelOptions]="{standalone: true}" />
+      <div *ngIf="f.submitted && surveyName.invalid">
+        <div *ngIf="surveyName.errors.required">surveyName is required</div>
+      </div>
+    </div>
+    <div class="form-group">
       <label for="name">Form name</label>
       <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
       <div *ngIf="f.submitted && name.invalid">
@@ -64,5 +72,8 @@
         </label>
       </div>
     </div>
+  </div>
+  <div *ngIf="surveyTemplateArray.length>0" class="form-grop">
+    <button (click)="submitSurvey()" class="btn btn-primary">Save Survey Form</button>
   </div>
 </div>

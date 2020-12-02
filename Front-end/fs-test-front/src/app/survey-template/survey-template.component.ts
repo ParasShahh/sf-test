@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SurveyTemplateService } from '../services/survey-template.service';
 import { SurveyTemplate } from './survey-template.model';
 
 @Component({
@@ -8,8 +9,9 @@ import { SurveyTemplate } from './survey-template.model';
 })
 export class SurveyTemplateComponent implements OnInit {
   form: any = {};
+  surveyNameText;
   surveyTemplateArray: SurveyTemplate[] = [];
-  constructor() {
+  constructor(private surveyservice: SurveyTemplateService) {
   }
 
   ngOnInit() {
@@ -22,6 +24,22 @@ export class SurveyTemplateComponent implements OnInit {
     const item = { ...this.form };
     this.form = {}
     this.surveyTemplateArray.push(item);
+  }
+
+  submitSurvey() {
+    this.surveyTemplateArray.forEach((e) => {
+      if (e.options) {
+        e.options = e.options.join(",");
+      }
+    })
+    var submitObj = {
+      surveyName: this.surveyNameText,
+      forms: this.surveyTemplateArray
+    };
+    console.log(submitObj);
+    this.surveyservice.saveSurveyForm(submitObj).subscribe((res) => {
+      console.log(res);
+    })
   }
 
 }

@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { SurveyTemplateComponent } from './survey-template/survey-template.component';
+import { SurveyFormComponent } from './survey-form/survey-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SurveyTemplateComponent } from './survey-template/survey-template.compo
     UserComponent,
     RegisterComponent,
     HomeComponent,
-    SurveyTemplateComponent
+    SurveyTemplateComponent,
+    SurveyFormComponent
   ],
   imports: [
     BrowserModule,
